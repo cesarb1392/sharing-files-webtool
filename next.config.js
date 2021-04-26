@@ -5,4 +5,12 @@ module.exports = {
     devIndicators: {
         autoPrerender: false,
     },
+    exportPathMap: async  (
+      defaultPathMap,
+      { dev, dir, outDir, distDir, buildId }
+    )=> {
+        return {
+            '/': { page: '/' },
+        }
+    },
 }
