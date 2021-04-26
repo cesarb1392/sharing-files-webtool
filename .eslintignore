@@ -1,3 +1,5 @@
 dist/*
 coverage/*
 **/*.d.ts
+backend/*
+.github/*

@@ -9,7 +9,7 @@
     "dev": "node_modules/.bin/next dev",
     "postinstall": "node_modules/.bin/husky install",
     "prettier": "node_modules/.bin/prettier --write 'src/**/*.{ts,tsx}'",
-    "lint:fe": "node_modules/.bin/eslint -c .eslintrc.json --fix --ext --quiet .ts,.tsx src/**/*",
+    "lint:fe": "node_modules/.bin/eslint -c .eslintrc.json --fix --quiet src/**/*",
     "build:fe": "node_modules/.bin/next build && node_modules/.bin/next export -o build",
     "lint:be": "yarn workspace sharing-files-webtool-backend lint",
     "build:be": "yarn workspace sharing-files-webtool-backend build"
