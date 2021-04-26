@@ -1,18 +1,23 @@
 {
   "name": "sharing-files-webtool",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:cesarb1392/sharing-files-webtool.git",
   "author": "Cesar <contact@cesarb.dev>",
   "license": "MIT",
+  "private": true,
   "scripts": {
-    "dev": "./node_modules/.bin/next dev",
-    "build": "./node_modules/.bin/next build && ./node_modules/.bin/next export -o build",
-    "start": "./node_modules/.bin/next start",
-    "postinstall": "./node_modules/.bin/husky install",
-    "prettier": "./node_modules/.bin/prettier --write 'src/**/*.{ts,tsx}'",
-    "lint": "./node_modules/.bin/eslint --fix --ext .ts,.tsx src/**/*"
+    "dev": "node_modules/.bin/next dev",
+    "postinstall": "node_modules/.bin/husky install",
+    "prettier": "node_modules/.bin/prettier --write 'src/**/*.{ts,tsx}'",
+    "lint:fe": "node_modules/.bin/eslint -c .eslintrc.json --fix --ext --quiet .ts,.tsx src/**/*",
+    "lint:be": "yarn workspace sharing-files-webtool-backend lint",
+    "build:fe": "node_modules/.bin/next build && node_modules/.bin/next export -o build",
+    "build:be": "yarn workspace sharing-files-webtool-backend build"
   },
+  "workspaces": [
+    ".",
+    "backend"
+  ],
   "dependencies": {
     "@chakra-ui/core": "0.8.0",
     "@chakra-ui/react": "1.6.0",
@@ -22,7 +27,8 @@
     "framer-motion": "4",
     "next": "10.0.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/node": "14.14.41",
@@ -49,7 +55,10 @@
   "lint-staged": {
     "src/**/*.(tsx|ts)": [
       "yarn prettier",
-      "yarn lint"
+      "yarn lint:fe"
+    ],
+    "backend/**/*.ts": [
+      "yarn lint:be"
     ]
   }
 }

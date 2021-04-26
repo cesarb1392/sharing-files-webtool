@@ -1,0 +1,37 @@
+{
+  "name": "sharing-files-webtool-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:cesarb1392/sharing-files-webtool.git",
+  "author": "Cesar <contact@cesarb.dev>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node_modules/.bin/tsc --noEmit",
+    "debug": "node_modules/.bin/nodemon --inspect server.ts",
+    "lint": "node_modules/.bin/eslint -c .eslintrc.json --quiet --fix *.ts"
+  },
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "compression": "1.7.4",
+    "dotenv": "8.2.0",
+    "errorhandler": "1.5.1",
+    "express": "4.17.1",
+    "lusca": "^1.7.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/body-parser": "1.19.0",
+    "@types/chai": "4.2.14",
+    "@types/compression": "1.7.0",
+    "@types/errorhandler": "1.5.0",
+    "@types/eslint": "7.2.6",
+    "@types/express": "4.17.11",
+    "@types/lusca": "^1.7.0",
+    "@typescript-eslint/eslint-plugin": "4.14.2",
+    "@typescript-eslint/parser": "4.14.2",
+    "eslint": "7.19.0",
+    "nodemon": "2.0.7",
+    "ts-node": "9.1.1",
+    "typescript": "4.1.3"
+  }
+}
