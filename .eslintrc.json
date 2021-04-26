@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "plugins": ["prettier"],
+  "env": {
+    "browser": true,
+    "commonjs": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "react/jsx-props-no-spreading": ["off"],
+    "jsx-a11y/href-no-hash": ["off"],
+    "react/jsx-filename-extension":["off"],
+    "no-use-before-define":["off"]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
