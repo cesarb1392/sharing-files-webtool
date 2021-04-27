@@ -1,28 +1,27 @@
-import { Application, Response, Request } from 'express';
-import Debug from 'debug';
-
-const debug = Debug('routes');
+import { Application } from 'express';
+import LoginController from '../controller/login';
+import HealthController from '../controller/health';
+import { LoginServiceImpl } from '../service/login';
+import authenticateJWT from '../middleware/authenticate';
 
 export default class Router {
-  static getPaths(app: Application) {
-    app.get('/health', (req: Request, res: Response) => {
-      try {
-        debug(`Accessing homepage, from: ${req}`);
-        return res.sendStatus(200);
-      } catch (error) {
-        debug(JSON.stringify(error));
-        return res.sendStatus(500);
-      }
-    });
+  private readonly loginController: LoginController;
 
-    app.post('/login', (req: Request, res: Response) => {
-      try {
-        debug(`Accessing homepage, from: ${req}`);
-        return res.sendStatus(200);
-      } catch (error) {
-        debug(JSON.stringify(error));
-        return res.sendStatus(500);
-      }
-    });
+  private readonly healthController: HealthController;
+
+  constructor(private readonly development: boolean, private readonly app: Application) {
+    this.loginController = new LoginController(new LoginServiceImpl(), development);
+    this.healthController = new HealthController();
+  }
+
+  initPublicRoutes() {
+    this.app.get('/health', this.healthController.ping.bind(this.healthController));
+    this.app.get('/login', this.loginController.authenticate.bind(this.loginController));
+    this.app.get('/logout', this.loginController.logout.bind(this.loginController));
+    this.app.get('*', this.healthController.anyPath.bind(this.healthController));
+  }
+
+  initPrivateRoutes() {
+    this.app.get('/admin', authenticateJWT);
   }
 }

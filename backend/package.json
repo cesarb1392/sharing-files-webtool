@@ -8,7 +8,7 @@
   "scripts": {
     "build": "node_modules/.bin/tsc --noEmit",
     "debug": "node_modules/.bin/nodemon",
-    "lint": "node_modules/.bin/eslint -c .eslintrc.json --quiet --fix ./src/*.ts"
+    "lint": "node_modules/.bin/eslint --quiet --fix ./src/*.ts"
   },
   "dependencies": {
     "body-parser": "1.19.0",

@@ -18,32 +18,40 @@ if (process.env.NODE_ENV === 'development') {
   app.use(errorHandler());
   app.use((req: Request, res: Response, next: NextFunction): void => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Cache-Control');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Authorization, Origin, X-Requested-With, Content-Type, Accept, Cache-Control',
+    );
     return next();
   });
 } else {
-  app.use(lusca({
-    csrf: true,
-    csp: {
-      policy: {
-        'default-src': "'none'",
-        'script-src': "'self' ",
-        'manifest-src': "'self' ",
-        'style-src': "'self' ",
-        'connect-src': "'self'",
-        'img-src': "'self'",
-        'font-src': "'self'",
+  app.use(
+    lusca({
+      csrf: true,
+      csp: {
+        policy: {
+          'default-src': "'none'",
+          'script-src': "'self' ",
+          'manifest-src': "'self' ",
+          'style-src': "'self' ",
+          'connect-src': "'self'",
+          'img-src': "'self'",
+          'font-src': "'self'",
+        },
       },
-    },
-    xframe: 'SAMEORIGIN',
-    hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
-    xssProtection: true,
-    nosniff: true,
-    referrerPolicy: 'same-origin',
-  }));
+      xframe: 'SAMEORIGIN',
+      hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
+      xssProtection: true,
+      nosniff: true,
+      referrerPolicy: 'same-origin',
+    }),
+  );
   app.use(compression());
 }
-// app.use(Headers);
-Router.getPaths(app);
+
+// ROUTES
+const router = new Router(process.env.NODE_ENV === 'development', app);
+router.initPublicRoutes();
+router.initPrivateRoutes();
 
 export default app;
