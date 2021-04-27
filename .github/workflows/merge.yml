@@ -16,7 +16,7 @@ jobs:
           echo "Sha: ${{ steps.vars.outputs.sha_short }}"
       - uses: actions/checkout@v2
 
-      - name: Cache next
+      - name: Cache nextjs
         uses: actions/cache@v2
         with:
           path: |
