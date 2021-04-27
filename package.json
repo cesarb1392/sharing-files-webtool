@@ -6,9 +6,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "node_modules/.bin/next dev",
+    "dev": "NODE_ENV=development node_modules/.bin/next dev",
     "postinstall": "node_modules/.bin/husky install",
-    "prettier": "node_modules/.bin/prettier --write 'src/**/*.{ts,tsx}'",
+    "prettier:fe": "node_modules/.bin/prettier --write 'src/**/*.{ts,tsx}'",
     "lint:fe": "node_modules/.bin/eslint -c .eslintrc.json --fix --quiet src/**/*",
     "build:fe": "node_modules/.bin/next build && node_modules/.bin/next export -o build",
     "lint:be": "yarn workspace sharing-files-webtool-backend lint",
@@ -30,6 +30,7 @@
     "next": "10.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-icons": "^4.2.0",
     "winston": "3.3.3"
   },
   "devDependencies": {
@@ -55,7 +56,7 @@
   },
   "lint-staged": {
     "src/**/*.(tsx|ts)": [
-      "yarn prettier",
+      "yarn prettier:fe",
       "yarn lint:fe"
     ],
     "backend/**/*.ts": [

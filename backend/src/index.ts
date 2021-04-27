@@ -2,10 +2,10 @@ import Debug from 'debug';
 import * as dotenv from 'dotenv';
 import app from './config/app';
 
-dotenv.config();
-
 const index = () => {
   const debug = Debug('Index');
+  dotenv.config({ path: '..' });
+
   try {
     app
       .listen(process.env.PORT, () => {

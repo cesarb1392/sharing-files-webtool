@@ -12,5 +12,9 @@ module.exports = {
         return {
             '/': { page: '/' },
         }
+    },
+    env:{
+        DEV: 'http://localhost:3001',
+        PROD: '/'
     }
 }

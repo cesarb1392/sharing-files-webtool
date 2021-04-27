@@ -1,22 +1,21 @@
-import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
 import { Spinner } from '@chakra-ui/react';
+import API from 'src/libs/API';
+import LoginForm from 'src/components/LoginForm';
 
 export default function Home() {
   const firstUpdate = useRef(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  useEffect(() => {
+  useEffect((): void => {
     if (firstUpdate.current) {
       firstUpdate.current = false;
-      setIsLoading(true);
-      axios.get('http://localhost:3001').then(() => setIsLoading(false));
+      API.health(setIsLoading).then(() => setIsLoading(false));
     }
   });
   return (
     <>
       {isLoading && <Spinner />}
-      {!isLoading && <>Finish Loading</>}
+      {!isLoading && <LoginForm />}
     </>
   );
 }
