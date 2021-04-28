@@ -1,0 +1,28 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:latest
+    container_name: ${DB_DATABASE}
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=${DB_DATABASE}
+      - DEBUG=main
+      - NODE_ENV=${NODE_ENV}
+    volumes:
+      - ./docker-runtime/mongodb:/data/db
+    networks:
+      - app-network
+
+#  redis:
+#    image: redis:5-alpine
+#    container_name: ${REDIS_SERVER_HOST}
+#    command: redis-server --requirepass ${REDIS_SERVER_PASSWORD}
+#    ports:
+#      - 6379:6379
+#    networks:
+#      - app-network
+
+networks:
+  app-network:
+    driver: bridge
