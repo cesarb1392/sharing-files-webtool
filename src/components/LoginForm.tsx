@@ -41,11 +41,9 @@ export default function LoginForm() {
     }
   };
 
-  const handlePasswordVisibility = () => setShowPassword(!showPassword);
-
   return (
     <Flex width="full" align="center" justifyContent="center">
-      <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
+      <Box p={8} width="50%" borderWidth={1} borderRadius={8} boxShadow="lg">
         {isLoggedIn ? (
           <Box textAlign="center">
             <Text>
@@ -64,9 +62,9 @@ export default function LoginForm() {
             </Button>
           </Box>
         ) : (
-          <>
+          <Flex direction="column">
             <Box textAlign="center">
-              <Heading>Login</Heading>
+              <Heading>Welcome !</Heading>
             </Box>
             <Box my={4} textAlign="left">
               <form onSubmit={handleSubmit}>
@@ -75,7 +73,7 @@ export default function LoginForm() {
                   <FormLabel>Email</FormLabel>
                   <Input
                     type="email"
-                    placeholder="test@test.com"
+                    placeholder="email@email.com"
                     size="lg"
                     onChange={(event) => setEmail(event.currentTarget.value)}
                   />
@@ -90,7 +88,7 @@ export default function LoginForm() {
                       onChange={(event) => setPassword(event.currentTarget.value)}
                     />
                     <InputRightElement width="3rem">
-                      <Button h="1.5rem" size="sm" onClick={handlePasswordVisibility}>
+                      <Button h="1.5rem" size="sm" onClick={() => setShowPassword(!showPassword)}>
                         {showPassword ? <Icon name="view-off" /> : <Icon name="view" />}
                       </Button>
                     </InputRightElement>
@@ -105,7 +103,7 @@ export default function LoginForm() {
                 </Button>
               </form>
             </Box>
-          </>
+          </Flex>
         )}
       </Box>
     </Flex>
