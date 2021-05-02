@@ -7,13 +7,14 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # frontend && backend
-COPY package.json /app/package.json && \
-    yarn.lock /app/yarn.lock && \
-    tsconfig.json /app/tsconfig.json && \
-    src/ /app/src && \
-    backend/package.json /app/backend/package.json && \
-    backend/tsconfig.json /app/backend/tsconfig.json && \
-    backend/src/ /app/src/backend
+COPY package.json \
+    yarn.lock \
+    tsconfig.json \
+    src/ \
+    backend/package.json \
+    backend/tsconfig.json \
+    backend/src/ \
+    ./
 
 # install dependencies
 RUN yarn install --production --frozen-lockfile --non-interactive && \
@@ -29,10 +30,10 @@ RUN apk update && apk add nano openssl && \
 
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-COPY --from=BUILD_IMAGE /app/package.json /app/package.json && \
-    --from=BUILD_IMAGE /app/yarn.lock /app/yarn.lock && \
-    --from=BUILD_IMAGE /app/backend /app/backend && \
-    --from=BUILD_IMAGE /app/node_modules /app/node_modules && \
+COPY --from=BUILD_IMAGE /app/package.json /app/package.json \
+    --from=BUILD_IMAGE /app/yarn.lock /app/yarn.lock \
+    --from=BUILD_IMAGE /app/backend /app/backend \
+    --from=BUILD_IMAGE /app/node_modules /app/node_modules \
     --from=BUILD_IMAGE /app/public /app/public
 
 EXPOSE 3000
