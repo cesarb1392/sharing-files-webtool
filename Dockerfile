@@ -1,6 +1,6 @@
 FROM arm32v6/node:14-alpine3.10 as BUILD_IMAGE
 # set working space
-RUN mkdir /app/backend
+RUN mkdir /app && mkdir /app/backend
 WORKDIR /app
 
 # copy dependencies
