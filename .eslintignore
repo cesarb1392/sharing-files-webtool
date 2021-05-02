@@ -3,3 +3,4 @@ coverage/*
 **/*.d.ts
 backend/*
 .github/*
+node_modules/*

@@ -1,5 +1,7 @@
 .idea
 docker-runtime
+build
+backend/build
 
 # Logs
 logs

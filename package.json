@@ -64,5 +64,8 @@
       "yarn prettier:be",
       "yarn lint:be"
     ]
+  },
+  "engines": {
+    "node": "~14.16.x"
   }
 }

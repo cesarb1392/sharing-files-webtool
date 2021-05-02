@@ -6,7 +6,8 @@
   "author": "Cesar <contact@cesarb.dev>",
   "license": "MIT",
   "scripts": {
-    "build": "node_modules/.bin/tsc --noEmit",
+    "start:prod": "DEBUG=mode:* node ./build/index.js",
+    "build": "node_modules/.bin/tsc",
     "debug": "node_modules/.bin/nodemon",
     "lint": "node_modules/.bin/eslint -c .eslintrc.json --quiet --fix ./src/*.ts"
   },

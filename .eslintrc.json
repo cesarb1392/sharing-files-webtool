@@ -23,6 +23,9 @@
     "no-use-before-define":["off"]
   },
   "settings": {
+    "react": {
+      "version": "latest"
+    },
     "import/resolver": {
       "typescript": {}
     }
