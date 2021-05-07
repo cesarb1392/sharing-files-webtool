@@ -3,7 +3,8 @@ name: CI/CD - Release
 on:
   push:
     branches:
-      - "!*"
+#      - "!*"
+      - "develop"
     tags:
       - "v*"
 
